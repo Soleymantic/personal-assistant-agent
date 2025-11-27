@@ -1,6 +1,6 @@
 # Personal Assistant Agent
 
-Angular-basierte Webapplikation (v17) zur Automatisierung persönlicher Bürokratie: erkennt Rechnungen, Verträge, Mahnungen, Fristen und Versicherungsangelegenheiten aus E-Mails, extrahiert relevante Daten und ordnet sie in eine intelligente Inbox ein.
+Angular-basierte Webapplikation (v20) zur Automatisierung persönlicher Bürokratie: erkennt Rechnungen, Verträge, Mahnungen, Fristen und Versicherungsangelegenheiten aus E-Mails, extrahiert relevante Daten und ordnet sie in eine intelligente Inbox ein.
 
 ## Übersicht
 - Automatischer E-Mail-Import mit Klassifikation (Rechnung, Vertrag, Mahnung, Versicherung, Termin).
@@ -19,6 +19,8 @@ Angular-basierte Webapplikation (v17) zur Automatisierung persönlicher Bürokra
    npm start
    ```
    Der Dev-Server läuft standardmäßig auf `http://localhost:4200`.
+
+> Hinweis: Das Projekt nutzt bereits den neuen Angular-Control-Flow (`@for`, `@if`) und die Angular-20-Toolchain (CLI + esbuild-Builder). Achte bei Erweiterungen darauf, die neuen Sprachkonstrukte beizubehalten.
 
 ## Architektur
 Details zur empfohlenen Architektur, Datenmodelle, Pipelines und Sicherheits-/Deployment-Aspekte finden sich in [`docs/architecture.md`](docs/architecture.md).

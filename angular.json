@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/angular-cli",
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "projects": {
     "bureaucracy-assistant": {
@@ -10,7 +10,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
             "outputPath": "dist/bureaucracy-assistant",
             "index": "src/index.html",
@@ -42,16 +42,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bureaucracy-assistant:build"
+            "buildTarget": "bureaucracy-assistant:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "bureaucracy-assistant:build:production"
+              "buildTarget": "bureaucracy-assistant:build:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "bureaucracy-assistant"
+  "cli": {
+    "analytics": false
+  }
 }
