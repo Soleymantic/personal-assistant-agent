@@ -1,6 +1,6 @@
 .search-bar {
-  background: #14181f;
-  border: 1px solid #252b34;
+  background: var(--surface-1);
+  border: 1px solid var(--border-1);
   border-radius: 16px;
   padding: 12px;
   display: flex;
@@ -12,9 +12,9 @@
   width: 100%;
   padding: 12px 14px;
   border-radius: 12px;
-  border: 1px solid #333b47;
-  background: #0e1117;
-  color: #e2e8f0;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--text-primary);
   font-size: 14px;
 }
 
@@ -25,9 +25,9 @@
 }
 
 .chip {
-  border: 1px solid #2e3744;
-  background: #161b23;
-  color: #cbd5e1;
+  border: 1px solid var(--border-2);
+  background: var(--surface-2);
+  color: var(--text-muted);
   padding: 8px 12px;
   border-radius: 999px;
   font-size: 13px;
@@ -36,11 +36,11 @@
 }
 
 .chip.active {
-  background: #2b6cb0;
-  border-color: #2b6cb0;
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
   color: #f7fafc;
 }
 
 .chip:hover {
-  border-color: #4a5568;
+  border-color: var(--border-strong);
 }

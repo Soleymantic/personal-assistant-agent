@@ -1,8 +1,8 @@
 :host {
   display: block;
   min-height: 100vh;
-  background: linear-gradient(135deg, #0a0d12, #0f1725);
-  color: #e2e8f0;
+  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-primary);
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   padding: 28px;
 }
@@ -22,15 +22,48 @@
   gap: 14px;
 }
 
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .brand {
   font-size: 20px;
   font-weight: 800;
   letter-spacing: 0.5px;
   padding: 12px 14px;
-  background: #111620;
-  border: 1px solid #1f2631;
+  background: var(--surface-3);
+  border: 1px solid var(--border-1);
   border-radius: 12px;
   text-align: center;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border-2);
+  background: var(--surface-2);
+  color: var(--text-primary);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 10px 30px var(--shadow-accent);
+}
+
+.theme-toggle:hover {
+  border-color: var(--border-strong);
+}
+
+.theme-toggle .icon {
+  font-size: 16px;
+}
+
+.theme-toggle .label {
+  font-size: 14px;
 }
 
 .layout {

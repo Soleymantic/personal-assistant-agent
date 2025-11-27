@@ -1,6 +1,12 @@
 <div class="page">
   <header class="app-header">
-    <div class="brand">Bürokratie-Assistent</div>
+    <div class="brand-row">
+      <div class="brand">Bürokratie-Assistent</div>
+      <button class="theme-toggle" type="button" (click)="toggleTheme()" [attr.aria-label]="theme() === 'dark' ? 'Lichtmodus aktivieren' : 'Dunkelmodus aktivieren'">
+        <span class="icon" aria-hidden="true">{{ theme() === 'dark' ? '🌙' : '☀️' }}</span>
+        <span class="label">{{ theme() === 'dark' ? 'Dark' : 'Light' }}</span>
+      </button>
+    </div>
     <app-filter-bar
       [searchTerm]="inbox.searchTerm()"
       [selectedTags]="inbox.selectedTags()"
