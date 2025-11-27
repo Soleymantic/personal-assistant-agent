@@ -1,0 +1,22 @@
+<div class="status-switcher">
+  <button
+    class="status-btn"
+    [class.active]="activeStatus === 'all'"
+    (click)="setStatus.emit('all')"
+  >Alle</button>
+  <button
+    class="status-btn"
+    [class.active]="activeStatus === 'pending'"
+    (click)="setStatus.emit('pending')"
+  >Pending</button>
+  <button
+    class="status-btn"
+    [class.active]="activeStatus === 'needs-action'"
+    (click)="setStatus.emit('needs-action')"
+  >Needs Action</button>
+  <button
+    class="status-btn"
+    [class.active]="activeStatus === 'paid'"
+    (click)="setStatus.emit('paid')"
+  >Paid</button>
+</div>

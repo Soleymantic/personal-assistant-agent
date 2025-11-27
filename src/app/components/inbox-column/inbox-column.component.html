@@ -1,0 +1,15 @@
+<section class="column">
+  <div class="column-header">
+    <h2>{{ title }}</h2>
+    <span class="counter">{{ items.length }}</span>
+  </div>
+
+  @for (item of items; track item.id) {
+    <app-document-card
+      [document]="item"
+      [accent]="accent"
+      [selected]="selectedId === item.id"
+      (select)="selectItem.emit(item)"
+    />
+  }
+</section>

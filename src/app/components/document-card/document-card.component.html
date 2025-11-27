@@ -1,0 +1,15 @@
+<article class="card" (click)="select.emit(document)" [class.selected]="selected">
+  <div class="card-top">
+    <span class="badge" [class.warning]="accent === 'warning'" [class.danger]="accent === 'danger'" [class.success]="accent === 'success'">
+      {{ document.due }}
+    </span>
+    <span class="amount">{{ document.amount }}</span>
+  </div>
+  <h3>{{ document.title }}</h3>
+  <p>{{ document.sender }}</p>
+  <div class="tags">
+    @for (tag of document.tags; track tag) {
+      <span class="tag">{{ tag }}</span>
+    }
+  </div>
+</article>
