@@ -1,6 +1,6 @@
 .column {
-  background: #0b0f15;
-  border: 1px solid #1f2631;
+  background: var(--surface-1);
+  border: 1px solid var(--border-1);
   border-radius: 16px;
   padding: 16px;
   display: flex;
@@ -18,14 +18,14 @@
 
 .column h2 {
   margin: 0;
-  color: #e2e8f0;
+  color: var(--text-primary);
 }
 
 .counter {
-  background: #111620;
-  border: 1px solid #2e3744;
+  background: var(--surface-3);
+  border: 1px solid var(--border-2);
   padding: 6px 12px;
   border-radius: 10px;
-  color: #a0aec0;
+  color: var(--text-muted);
   font-weight: 600;
 }

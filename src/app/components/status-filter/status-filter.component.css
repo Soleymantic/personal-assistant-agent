@@ -1,27 +1,34 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
 .status-switcher {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .status-btn {
   padding: 10px 14px;
   border-radius: 12px;
-  border: 1px solid #2e3744;
-  background: #161b23;
-  color: #cbd5e1;
+  border: 1px solid var(--border-2);
+  background: var(--surface-2);
+  color: var(--text-muted);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .status-btn.active {
-  background: linear-gradient(120deg, #2b6cb0, #3182ce);
+  background: linear-gradient(120deg, var(--accent-primary), var(--accent-primary-strong));
   color: #f7fafc;
-  border-color: #2b6cb0;
+  border-color: var(--accent-primary);
 }
 
 .status-btn:hover {
-  border-color: #4a5568;
+  border-color: var(--border-strong);
 }

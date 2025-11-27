@@ -1,9 +1,9 @@
 .details {
-  background: #0b0f15;
-  border: 1px solid #1f2631;
+  background: var(--surface-1);
+  border: 1px solid var(--border-1);
   border-radius: 16px;
   padding: 20px;
-  color: #e2e8f0;
+  color: var(--text-primary);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -21,14 +21,14 @@
 }
 
 .muted {
-  color: #a0aec0;
+  color: var(--text-muted);
   margin: 0;
 }
 
 .badge.neutral {
-  background: #111620;
-  border: 1px solid #2e3744;
-  color: #a0aec0;
+  background: var(--surface-3);
+  border: 1px solid var(--border-2);
+  color: var(--text-muted);
   padding: 6px 10px;
   border-radius: 12px;
   display: inline-block;
@@ -41,15 +41,15 @@
 }
 
 .pill {
-  background: #111620;
-  border: 1px solid #2e3744;
+  background: var(--surface-3);
+  border: 1px solid var(--border-2);
   padding: 8px 12px;
   border-radius: 12px;
-  color: #cbd5e1;
+  color: var(--text-muted);
 }
 
 .summary {
-  color: #cbd5e1;
+  color: var(--text-primary);
   line-height: 1.6;
 }
 
@@ -65,29 +65,29 @@
   border-radius: 12px;
   padding: 12px 14px;
   font-weight: 700;
-  border: 1px solid #2e3744;
+  border: 1px solid var(--border-2);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .primary {
-  background: linear-gradient(120deg, #2b6cb0, #3182ce);
+  background: linear-gradient(120deg, var(--accent-primary), var(--accent-primary-strong));
   color: #f7fafc;
-  border-color: #2b6cb0;
+  border-color: var(--accent-primary);
 }
 
 .secondary {
-  background: #161b23;
-  color: #e2e8f0;
+  background: var(--surface-2);
+  color: var(--text-primary);
 }
 
 .ghost {
   background: transparent;
-  color: #a0aec0;
+  color: var(--text-muted);
 }
 
 .templates {
-  border-top: 1px solid #1f2631;
+  border-top: 1px solid var(--border-1);
   padding-top: 12px;
 }
 
@@ -98,15 +98,15 @@
 }
 
 .template-list .chip {
-  background: #111620;
-  border: 1px solid #2e3744;
-  color: #cbd5e1;
+  background: var(--surface-3);
+  border: 1px solid var(--border-2);
+  color: var(--text-muted);
   padding: 8px 12px;
   border-radius: 999px;
   cursor: pointer;
 }
 
 .template-list .chip.danger {
-  border-color: #e53e3e;
+  border-color: var(--badge-danger);
   color: #fed7d7;
 }
