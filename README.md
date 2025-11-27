@@ -1,6 +1,6 @@
 # Personal Assistant Agent
 
-Entwurf für eine Angular-20-Webapplikation, die persönliche Bürokratie automatisiert: automatische Erkennung von Rechnungen, Verträgen, Mahnungen, Fristen und Versicherungsangelegenheiten aus E-Mails, Extraktion relevanter Daten sowie intelligente Inbox mit Automatisierungen und Entscheidungsunterstützung.
+Angular-basierte Webapplikation (v20) zur Automatisierung persönlicher Bürokratie: erkennt Rechnungen, Verträge, Mahnungen, Fristen und Versicherungsangelegenheiten aus E-Mails, extrahiert relevante Daten und ordnet sie in eine intelligente Inbox ein.
 
 ## Übersicht
 - Automatischer E-Mail-Import mit Klassifikation (Rechnung, Vertrag, Mahnung, Versicherung, Termin).
@@ -9,5 +9,21 @@ Entwurf für eine Angular-20-Webapplikation, die persönliche Bürokratie automa
 - Automatische Antwortvorschläge, die nur bei Entscheidungspflicht nachfragen.
 - Dokumentzusammenfassungen und Vertragsanalysen für schnelle Freigaben.
 
+## Entwicklung
+1. Abhängigkeiten installieren:
+   ```bash
+   npm install
+   ```
+2. Entwicklung starten:
+   ```bash
+   npm start
+   ```
+   Der Dev-Server läuft standardmäßig auf `http://localhost:4200`.
+
+> Hinweis: Das Projekt nutzt bereits den neuen Angular-Control-Flow (`@for`, `@if`) und die Angular-20-Toolchain (CLI + esbuild-Builder). Achte bei Erweiterungen darauf, die neuen Sprachkonstrukte beizubehalten.
+
 ## Architektur
 Details zur empfohlenen Architektur, Datenmodelle, Pipelines und Sicherheits-/Deployment-Aspekte finden sich in [`docs/architecture.md`](docs/architecture.md).
+
+## UI
+Die Angular-UI befindet sich unter `src/` und bildet eine Inbox mit Filterchips, Status-Tab, Spaltenansicht und Detailpanel ab.
