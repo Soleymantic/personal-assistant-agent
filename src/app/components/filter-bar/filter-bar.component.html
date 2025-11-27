@@ -1,0 +1,19 @@
+<div class="search-bar">
+  <input
+    type="search"
+    placeholder="Suche nach Rechnungen, Verträgen, Namen..."
+    [value]="searchTerm"
+    (input)="searchChange.emit($any($event.target).value)"
+  />
+  <div class="filter-tags">
+    @for (tag of availableTags; track tag) {
+      <button
+        class="chip"
+        [class.active]="selectedTags.includes(tag)"
+        (click)="toggleTag.emit(tag)"
+      >
+        {{ tag }}
+      </button>
+    }
+  </div>
+</div>

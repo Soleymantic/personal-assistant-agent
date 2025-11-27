@@ -1,160 +1,48 @@
 <div class="page">
   <header class="app-header">
     <div class="brand">Bürokratie-Assistent</div>
-    <div class="search-bar">
-      <input
-        type="search"
-        placeholder="Suche nach Rechnungen, Verträgen, Namen..."
-        [value]="searchTerm()"
-        (input)="searchTerm.set($any($event.target).value)"
-      />
-      <div class="filter-tags">
-        @for (tag of ['steuer', 'versicherung', 'mahnung', 'termin', 'auto']; track tag) {
-          <button
-            class="chip"
-            [class.active]="selectedTags().includes(tag)"
-            (click)="onToggleTag(tag)"
-          >
-            {{ tag }}
-          </button>
-        }
-      </div>
-    </div>
-    <div class="status-switcher">
-      <button
-        class="status-btn"
-        [class.active]="activeStatus() === 'all'"
-        (click)="onSetStatus('all')"
-      >Alle</button>
-      <button
-        class="status-btn"
-        [class.active]="activeStatus() === 'pending'"
-        (click)="onSetStatus('pending')"
-      >Pending</button>
-      <button
-        class="status-btn"
-        [class.active]="activeStatus() === 'needs-action'"
-        (click)="onSetStatus('needs-action')"
-      >Needs Action</button>
-      <button
-        class="status-btn"
-        [class.active]="activeStatus() === 'paid'"
-        (click)="onSetStatus('paid')"
-      >Paid</button>
-    </div>
+    <app-filter-bar
+      [searchTerm]="inbox.searchTerm()"
+      [selectedTags]="inbox.selectedTags()"
+      [availableTags]="inbox.availableTags"
+      (searchChange)="inbox.setSearch($event)"
+      (toggleTag)="inbox.toggleTag($event)"
+    />
+    <app-status-filter
+      [activeStatus]="inbox.activeStatus()"
+      (setStatus)="inbox.setStatus($event)"
+    />
   </header>
 
   <main class="layout">
-    <section class="column">
-      <div class="column-header">
-        <h2>Pending</h2>
-        <span class="counter">{{ pendingItems().length }}</span>
-      </div>
-      @for (item of pendingItems(); track item.id) {
-        <article
-          class="card"
-          (click)="onSelectItem(item)"
-          [class.selected]="selectedItem()?.id === item.id"
-        >
-          <div class="card-top">
-            <span class="badge warning">{{ item.due }}</span>
-            <span class="amount">{{ item.amount }}</span>
-          </div>
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.sender }}</p>
-          <div class="tags">
-            @for (tag of item.tags; track tag) {
-              <span class="tag">{{ tag }}</span>
-            }
-          </div>
-        </article>
-      }
-    </section>
+    <app-inbox-column
+      title="Pending"
+      [items]="inbox.pendingItems()"
+      accent="warning"
+      [selectedId]="inbox.selectedItem()?.id ?? null"
+      (selectItem)="inbox.selectItem($event)"
+    />
 
-    <section class="column">
-      <div class="column-header">
-        <h2>Needs Action</h2>
-        <span class="counter">{{ needsActionItems().length }}</span>
-      </div>
-      @for (item of needsActionItems(); track item.id) {
-        <article
-          class="card"
-          (click)="onSelectItem(item)"
-          [class.selected]="selectedItem()?.id === item.id"
-        >
-          <div class="card-top">
-            <span class="badge danger">{{ item.due }}</span>
-            <span class="amount">{{ item.amount }}</span>
-          </div>
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.sender }}</p>
-          <div class="tags">
-            @for (tag of item.tags; track tag) {
-              <span class="tag">{{ tag }}</span>
-            }
-          </div>
-        </article>
-      }
-    </section>
+    <app-inbox-column
+      title="Needs Action"
+      [items]="inbox.needsActionItems()"
+      accent="danger"
+      [selectedId]="inbox.selectedItem()?.id ?? null"
+      (selectItem)="inbox.selectItem($event)"
+    />
 
-    <section class="column">
-      <div class="column-header">
-        <h2>Paid</h2>
-        <span class="counter">{{ paidItems().length }}</span>
-      </div>
-      @for (item of paidItems(); track item.id) {
-        <article
-          class="card"
-          (click)="onSelectItem(item)"
-          [class.selected]="selectedItem()?.id === item.id"
-        >
-          <div class="card-top">
-            <span class="badge success">{{ item.due }}</span>
-            <span class="amount">{{ item.amount }}</span>
-          </div>
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.sender }}</p>
-          <div class="tags">
-            @for (tag of item.tags; track tag) {
-              <span class="tag">{{ tag }}</span>
-            }
-          </div>
-        </article>
-      }
-    </section>
+    <app-inbox-column
+      title="Paid"
+      [items]="inbox.paidItems()"
+      accent="success"
+      [selectedId]="inbox.selectedItem()?.id ?? null"
+      (selectItem)="inbox.selectItem($event)"
+    />
 
-    @if (selectedItem(); as detail) {
-      <aside class="details">
-        <div class="details-header">
-          <div>
-            <p class="badge neutral">{{ detail.category }}</p>
-            <h2>{{ detail.title }}</h2>
-            <p class="muted">{{ detail.sender }}</p>
-          </div>
-          <button class="ghost">Download</button>
-        </div>
-
-        <div class="pill-row">
-          <span class="pill">{{ detail.due }}</span>
-          <span class="pill">{{ detail.amount }}</span>
-        </div>
-
-        <p class="summary">{{ detail.summary }}</p>
-
-        <div class="actions">
-          <button class="primary" (click)="applyAction('pay')">Zahlung vorbereiten</button>
-          <button class="secondary" (click)="applyAction('reply')">Antwortvorschlag senden</button>
-        </div>
-
-        <div class="templates">
-          <h3>Antwortvorlagen</h3>
-          <div class="template-list">
-            <button class="chip">Bitte schicken Sie mir die Bilanz</button>
-            <button class="chip">Bitte bestätigen Sie den Termin</button>
-            <button class="chip danger">Ich widerspreche der Rechnung</button>
-          </div>
-        </div>
-      </aside>
-    }
+    <app-detail-panel
+      [document]="inbox.selectedItem()"
+      (pay)="applyAction('pay')"
+      (reply)="applyAction('reply')"
+    />
   </main>
 </div>

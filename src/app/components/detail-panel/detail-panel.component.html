@@ -1,0 +1,33 @@
+@if (document) {
+  <aside class="details">
+    <div class="details-header">
+      <div>
+        <p class="badge neutral">{{ document.category }}</p>
+        <h2>{{ document.title }}</h2>
+        <p class="muted">{{ document.sender }}</p>
+      </div>
+      <button class="ghost">Download</button>
+    </div>
+
+    <div class="pill-row">
+      <span class="pill">{{ document.due }}</span>
+      <span class="pill">{{ document.amount }}</span>
+    </div>
+
+    <p class="summary">{{ document.summary }}</p>
+
+    <div class="actions">
+      <button class="primary" (click)="pay.emit()">Zahlung vorbereiten</button>
+      <button class="secondary" (click)="reply.emit()">Antwortvorschlag senden</button>
+    </div>
+
+    <div class="templates">
+      <h3>Antwortvorlagen</h3>
+      <div class="template-list">
+        <button class="chip">Bitte schicken Sie mir die Bilanz</button>
+        <button class="chip">Bitte bestätigen Sie den Termin</button>
+        <button class="chip danger">Ich widerspreche der Rechnung</button>
+      </div>
+    </div>
+  </aside>
+}

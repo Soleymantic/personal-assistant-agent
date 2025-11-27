@@ -1,0 +1,31 @@
+.column {
+  background: #0b0f15;
+  border: 1px solid #1f2631;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 260px;
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.column h2 {
+  margin: 0;
+  color: #e2e8f0;
+}
+
+.counter {
+  background: #111620;
+  border: 1px solid #2e3744;
+  padding: 6px 12px;
+  border-radius: 10px;
+  color: #a0aec0;
+  font-weight: 600;
+}
