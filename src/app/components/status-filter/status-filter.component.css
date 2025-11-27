@@ -1,8 +1,15 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
 .status-switcher {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .status-btn {
