@@ -1,7 +1,10 @@
 <div class="page">
   <header class="app-header">
     <div class="brand-row">
-      <div class="brand">Bürokratie-Assistent</div>
+      <div class="brand" role="img" aria-label="Bürokratie-Assistent">
+        <span class="brand-icon material-symbols-rounded" aria-hidden="true">inbox</span>
+        <span class="sr-only">Bürokratie-Assistent</span>
+      </div>
       <button class="theme-toggle" type="button" (click)="toggleTheme()" [attr.aria-label]="theme() === 'dark' ? 'Lichtmodus aktivieren' : 'Dunkelmodus aktivieren'">
         <span class="icon" aria-hidden="true">{{ theme() === 'dark' ? '🌙' : '☀️' }}</span>
         <span class="label">{{ theme() === 'dark' ? 'Dark' : 'Light' }}</span>
