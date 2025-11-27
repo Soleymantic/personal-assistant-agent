@@ -24,4 +24,4 @@ Angular-basierte Webapplikation (v17) zur Automatisierung persönlicher Bürokra
 Details zur empfohlenen Architektur, Datenmodelle, Pipelines und Sicherheits-/Deployment-Aspekte finden sich in [`docs/architecture.md`](docs/architecture.md).
 
 ## UI
-Die Angular-UI befindet sich unter `src/` und bildet eine Inbox mit Filterchips, Status-Tab, Spaltenansicht und Detailpanel ab. Die früheren statischen Mockups sind weiterhin im Ordner [`ui-prototype`](ui-prototype) zu finden.
+Die Angular-UI befindet sich unter `src/` und bildet eine Inbox mit Filterchips, Status-Tab, Spaltenansicht und Detailpanel ab.
