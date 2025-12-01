@@ -1,0 +1,56 @@
+<section *ngIf="document; else missing">
+  <button class="back" routerLink="/documents">← Back to list</button>
+  <header class="header">
+    <div>
+      <p class="label">Document</p>
+      <h2>{{ document.title }}</h2>
+      <p class="meta">Sent by {{ document.sender }} • {{ document.createdAt | date:'medium' }}</p>
+    </div>
+    <app-status-badge [status]="document.status"></app-status-badge>
+  </header>
+
+  <section class="grid">
+    <div>
+      <h3>Overview</h3>
+      <p><strong>Amount:</strong> {{ document.amount | currency:'EUR' }}</p>
+      <p><strong>Due date:</strong> {{ document.due || 'Not provided' }}</p>
+      <p><strong>Category:</strong> {{ document.category || 'Uncategorized' }}</p>
+      <div>
+        <strong>Tags:</strong>
+        <span *ngIf="document.tags.length === 0" class="muted">No tags assigned</span>
+        <app-tag-chip *ngFor="let tag of document.tags" [tag]="tag"></app-tag-chip>
+      </div>
+    </div>
+    <div>
+      <h3>Summary</h3>
+      <p>{{ document.summary }}</p>
+    </div>
+  </section>
+
+  <section class="editor">
+    <h3>Edit (local only)</h3>
+    <form (ngSubmit)="save()" [formGroup]="form">
+      <label>
+        Status
+        <select formControlName="status">
+          <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
+        </select>
+      </label>
+      <label>
+        Category
+        <input formControlName="category" placeholder="Category" />
+      </label>
+      <label>
+        Tags (comma separated)
+        <input formControlName="tags" placeholder="finance, urgent" />
+      </label>
+      <p class="hint">Hook this form up to PUT /api/documents once the backend endpoint exists.</p>
+      <button type="submit">Save changes</button>
+      <p class="success" *ngIf="saveMessage">{{ saveMessage }}</p>
+    </form>
+  </section>
+</section>
+
+<ng-template #missing>
+  <p>Document not found.</p>
+</ng-template>

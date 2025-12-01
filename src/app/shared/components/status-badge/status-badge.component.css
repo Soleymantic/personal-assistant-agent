@@ -1,0 +1,27 @@
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.badge.pending {
+  background-color: #fff4e5;
+  color: #9a6700;
+  border: 1px solid #ffd699;
+}
+
+.badge.action {
+  background-color: #fff5f7;
+  color: #8a2846;
+  border: 1px solid #f7c6d2;
+}
+
+.badge.paid {
+  background-color: #e6ffed;
+  color: #036231;
+  border: 1px solid #9de2b8;
+}

@@ -6,17 +6,17 @@
   >Alle</button>
   <button
     class="status-btn"
-    [class.active]="activeStatus === 'pending'"
-    (click)="setStatus.emit('pending')"
+    [class.active]="activeStatus === statuses.PENDING"
+    (click)="setStatus.emit(statuses.PENDING)"
   >Pending</button>
   <button
     class="status-btn"
-    [class.active]="activeStatus === 'needs-action'"
-    (click)="setStatus.emit('needs-action')"
+    [class.active]="activeStatus === statuses.NEEDS_ACTION"
+    (click)="setStatus.emit(statuses.NEEDS_ACTION)"
   >Needs Action</button>
   <button
     class="status-btn"
-    [class.active]="activeStatus === 'paid'"
-    (click)="setStatus.emit('paid')"
+    [class.active]="activeStatus === statuses.PAID"
+    (click)="setStatus.emit(statuses.PAID)"
   >Paid</button>
 </div>

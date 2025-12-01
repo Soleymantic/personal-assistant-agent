@@ -1,68 +1,83 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { BureauDocument } from '../shared/models/bureau-document';
+import { BureauDocument } from '../core/models/bureau-document.model';
+import { DocumentStatus } from '../core/models/document-status.enum';
+import { Tag } from '../core/models/tag.model';
 
 @Injectable({ providedIn: 'root' })
 export class InboxStore {
   readonly searchTerm = signal('');
-  readonly activeStatus = signal<'all' | BureauDocument['status']>('all');
+  readonly activeStatus = signal<'all' | DocumentStatus>('all');
   readonly selectedTags = signal<string[]>([]);
-  readonly availableTags = ['steuer', 'versicherung', 'mahnung', 'termin', 'auto', 'mwst', 'it'];
+
+  readonly availableTags = ['steuer', 'versicherung', 'mahnung', 'termin', 'auto', 'mwst', 'it', 'strom', 'leasing'];
+
+  private readonly tagMap: Tag[] = this.availableTags.map((name, index) => ({ id: index + 1, name }));
 
   readonly inbox = signal<BureauDocument[]>([
     {
-      id: 1,
+      id: '1',
       title: 'Rechnung: Workspace GmbH',
       sender: 'Workspace GmbH',
-      amount: '1.200,00 €',
-      due: 'Fällig in 3 Tagen',
-      status: 'pending',
+      amount: 1200,
+      due: this.daysFromNowIso(3),
+      status: DocumentStatus.PENDING,
       category: 'Rechnungen',
-      tags: ['steuer', 'mwst'],
-      summary: 'Dienstleistungsrechnung für Support-Vertrag Q2 inkl. 20% MwSt.'
+      tags: this.tagsFor(['steuer', 'mwst']),
+      summary: 'Dienstleistungsrechnung für Support-Vertrag Q2 inkl. 20% MwSt.',
+      createdAt: this.daysFromNowIso(-6),
+      updatedAt: this.daysFromNowIso(-2)
     },
     {
-      id: 2,
+      id: '2',
       title: 'Vertrag: Versicherung Auto',
       sender: 'SicherDirekt',
-      amount: '86,00 € / Monat',
-      due: 'Verlängerung in 12 Tagen',
-      status: 'needs-action',
+      amount: 86,
+      due: this.daysFromNowIso(12),
+      status: DocumentStatus.NEEDS_ACTION,
       category: 'Verträge',
-      tags: ['versicherung', 'auto'],
-      summary: 'Vertragsverlängerung mit optionalem Schutzbrief, Kündigungsfrist 4 Wochen.'
+      tags: this.tagsFor(['versicherung', 'auto']),
+      summary: 'Vertragsverlängerung mit optionalem Schutzbrief, Kündigungsfrist 4 Wochen.',
+      createdAt: this.daysFromNowIso(-14),
+      updatedAt: this.daysFromNowIso(-1)
     },
     {
-      id: 3,
+      id: '3',
       title: 'Mahnung: Stromlieferant',
       sender: 'GreenGrid',
-      amount: '214,90 €',
-      due: 'Fällig heute',
-      status: 'needs-action',
+      amount: 214.9,
+      due: this.daysFromNowIso(0),
+      status: DocumentStatus.NEEDS_ACTION,
       category: 'Mahnung',
-      tags: ['mahnung', 'strom'],
-      summary: 'Mahnstufe 1 für Vertrag #GG-7741, Bitte begleichen oder Einspruch einlegen.'
+      tags: this.tagsFor(['mahnung', 'strom']),
+      summary: 'Mahnstufe 1 für Vertrag #GG-7741, Bitte begleichen oder Einspruch einlegen.',
+      createdAt: this.daysFromNowIso(-10),
+      updatedAt: this.daysFromNowIso(0)
     },
     {
-      id: 4,
+      id: '4',
       title: 'Bestätigung: Steuerberater Termin',
       sender: 'TaxPilot',
-      amount: '—',
-      due: 'Termin: 16. Mai, 10:00 Uhr',
-      status: 'pending',
+      amount: 0,
+      due: this.daysFromNowIso(5),
+      status: DocumentStatus.PENDING,
       category: 'Fristen',
-      tags: ['termin', 'steuer'],
-      summary: 'Kickoff für Jahresabschluss. Bitte Agenda bestätigen und Unterlagen bereitstellen.'
+      tags: this.tagsFor(['termin', 'steuer']),
+      summary: 'Kickoff für Jahresabschluss. Bitte Agenda bestätigen und Unterlagen bereitstellen.',
+      createdAt: this.daysFromNowIso(-8),
+      updatedAt: this.daysFromNowIso(-2)
     },
     {
-      id: 5,
+      id: '5',
       title: 'Zahlung verbucht: Laptop Leasing',
       sender: 'Leasy GmbH',
-      amount: '315,00 €',
-      due: 'Bezahlt',
-      status: 'paid',
+      amount: 315,
+      due: null,
+      status: DocumentStatus.PAID,
       category: 'Rechnungen',
-      tags: ['leasing', 'it'],
-      summary: 'März-Rate erfolgreich verbucht. Nächste Rate 15. Mai.'
+      tags: this.tagsFor(['leasing', 'it']),
+      summary: 'März-Rate erfolgreich verbucht. Nächste Rate 15. Mai.',
+      createdAt: this.daysFromNowIso(-20),
+      updatedAt: this.daysFromNowIso(-7)
     }
   ]);
 
@@ -78,14 +93,14 @@ export class InboxStore {
         item.title.toLowerCase().includes(search) ||
         item.sender.toLowerCase().includes(search) ||
         item.summary.toLowerCase().includes(search);
-      const matchesTags = tags.length === 0 || tags.every(tag => item.tags.includes(tag));
+      const matchesTags = tags.length === 0 || tags.every(tag => item.tags.some(t => t.name === tag));
       return matchesStatus && matchesSearch && matchesTags;
     });
   });
 
-  readonly pendingItems = computed(() => this.filteredInbox().filter(item => item.status === 'pending'));
-  readonly needsActionItems = computed(() => this.filteredInbox().filter(item => item.status === 'needs-action'));
-  readonly paidItems = computed(() => this.filteredInbox().filter(item => item.status === 'paid'));
+  readonly pendingItems = computed(() => this.filteredInbox().filter(item => item.status === DocumentStatus.PENDING));
+  readonly needsActionItems = computed(() => this.filteredInbox().filter(item => item.status === DocumentStatus.NEEDS_ACTION));
+  readonly paidItems = computed(() => this.filteredInbox().filter(item => item.status === DocumentStatus.PAID));
 
   readonly selectedItem = signal<BureauDocument | null>(null);
 
@@ -93,7 +108,7 @@ export class InboxStore {
     this.selectedItem.set(item);
   }
 
-  setStatus(status: 'all' | BureauDocument['status']): void {
+  setStatus(status: 'all' | DocumentStatus): void {
     this.activeStatus.set(status);
   }
 
@@ -104,5 +119,15 @@ export class InboxStore {
 
   setSearch(term: string): void {
     this.searchTerm.set(term);
+  }
+
+  private daysFromNowIso(days: number): string {
+    const date = new Date();
+    date.setDate(date.getDate() + days);
+    return date.toISOString();
+  }
+
+  private tagsFor(names: string[]): Tag[] {
+    return names.map(name => this.tagMap.find(tag => tag.name === name)).filter((tag): tag is Tag => !!tag);
   }
 }

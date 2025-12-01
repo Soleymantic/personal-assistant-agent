@@ -1,0 +1,32 @@
+<section>
+  <div class="header">
+    <div>
+      <h2>Documents</h2>
+      <p class="subtitle">Preview of ingested bureau documents. Data is mocked until the REST endpoint is ready.</p>
+    </div>
+  </div>
+
+  <div class="table" role="table">
+    <div class="row header" role="row">
+      <div>Title</div>
+      <div>Sender</div>
+      <div>Amount</div>
+      <div>Due</div>
+      <div>Status</div>
+      <div>Category</div>
+      <div>Tags</div>
+    </div>
+    <button class="row" role="row" *ngFor="let doc of documents" (click)="openDocument(doc)">
+      <div>{{ doc.title }}</div>
+      <div>{{ doc.sender }}</div>
+      <div>{{ doc.amount | currency:'EUR' }}</div>
+      <div>{{ doc.due || '—' }}</div>
+      <div><app-status-badge [status]="doc.status"></app-status-badge></div>
+      <div>{{ doc.category || 'Uncategorized' }}</div>
+      <div>
+        <app-tag-chip *ngFor="let tag of doc.tags" [tag]="tag"></app-tag-chip>
+        <span *ngIf="doc.tags.length === 0" class="muted">No tags</span>
+      </div>
+    </button>
+  </div>
+</section>

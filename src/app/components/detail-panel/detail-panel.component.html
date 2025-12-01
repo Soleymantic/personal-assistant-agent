@@ -2,7 +2,7 @@
   <aside class="details">
     <div class="details-header">
       <div>
-        <p class="badge neutral">{{ document.category }}</p>
+        <p class="badge neutral">{{ document.category || 'Allgemein' }}</p>
         <h2>{{ document.title }}</h2>
         <p class="muted">{{ document.sender }}</p>
       </div>
@@ -10,8 +10,8 @@
     </div>
 
     <div class="pill-row">
-      <span class="pill">{{ document.due }}</span>
-      <span class="pill">{{ document.amount }}</span>
+      <span class="pill">{{ formatDue(document.due) }}</span>
+      <span class="pill">{{ formatAmount(document.amount) }}</span>
     </div>
 
     <p class="summary">{{ document.summary }}</p>

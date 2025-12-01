@@ -1,0 +1,46 @@
+.subtitle {
+  color: #6b7280;
+}
+
+.new-tag {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.new-tag input,
+.tag-item input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+.new-tag button,
+.tag-item button {
+  border: none;
+  background: #2563eb;
+  color: white;
+  border-radius: 6px;
+  padding: 0.5rem 0.9rem;
+  cursor: pointer;
+}
+
+.tag-list {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 480px;
+}
+
+.tag-item {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.message {
+  color: #0f766e;
+}
+
+.muted {
+  color: #9ca3af;
+}

@@ -1,0 +1,12 @@
+<section class="health-card" *ngIf="!loading; else loadingTpl">
+  <h2>Backend health</h2>
+  <p>Status: <strong [class.up]="health?.status === 'UP'" [class.down]="health?.status !== 'UP'">{{ health?.status }}</strong></p>
+  <div class="payload" *ngIf="health">
+    <h3>Raw payload</h3>
+    <pre>{{ health | json }}</pre>
+  </div>
+</section>
+
+<ng-template #loadingTpl>
+  <p>Checking backend health…</p>
+</ng-template>
