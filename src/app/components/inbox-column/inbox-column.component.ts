@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { BureauDocument } from '../../core/models/bureau-document.model';
 import { DocumentCardComponent } from '../document-card/document-card.component';
-import { BureauDocument } from '../../shared/models/bureau-document';
 
 @Component({
   selector: 'app-inbox-column',
@@ -14,7 +14,7 @@ export class InboxColumnComponent {
   @Input() title = '';
   @Input() items: BureauDocument[] = [];
   @Input() accent: 'warning' | 'danger' | 'success' = 'warning';
-  @Input() selectedId: number | null = null;
+  @Input() selectedId: string | null = null;
 
   @Output() selectItem = new EventEmitter<BureauDocument>();
 }

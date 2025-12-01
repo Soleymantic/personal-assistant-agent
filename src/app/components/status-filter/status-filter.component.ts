@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BureauDocument } from '../../shared/models/bureau-document';
+import { DocumentStatus } from '../../core/models/document-status.enum';
 
 @Component({
   selector: 'app-status-filter',
@@ -10,6 +10,8 @@ import { BureauDocument } from '../../shared/models/bureau-document';
   styleUrls: ['./status-filter.component.css']
 })
 export class StatusFilterComponent {
-  @Input() activeStatus: 'all' | BureauDocument['status'] = 'all';
-  @Output() setStatus = new EventEmitter<'all' | BureauDocument['status']>();
+  readonly statuses = DocumentStatus;
+
+  @Input() activeStatus: 'all' | DocumentStatus = 'all';
+  @Output() setStatus = new EventEmitter<'all' | DocumentStatus>();
 }

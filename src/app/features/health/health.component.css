@@ -1,0 +1,23 @@
+.health-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.health-card h2 {
+  margin-top: 0;
+}
+
+.payload {
+  margin-top: 1rem;
+}
+
+.up {
+  color: #037847;
+}
+
+.down {
+  color: #9b1c1c;
+}

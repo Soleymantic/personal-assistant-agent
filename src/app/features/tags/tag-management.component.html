@@ -1,0 +1,19 @@
+<section>
+  <h2>Tags</h2>
+  <p class="subtitle">Manage tags locally. Wire this view to /api/tags once the backend is available.</p>
+
+  <form class="new-tag" (ngSubmit)="createTag()">
+    <input [(ngModel)]="newTagName" name="newTag" placeholder="Add tag" />
+    <button type="submit">Create</button>
+  </form>
+
+  <div class="tag-list">
+    <div class="tag-item" *ngFor="let tag of tags">
+      <input [(ngModel)]="renameBuffer[tag.id]" [name]="'tag-' + tag.id" />
+      <button type="button" (click)="renameTag(tag)">Rename</button>
+    </div>
+    <p *ngIf="tags.length === 0" class="muted">No tags yet.</p>
+  </div>
+
+  <p class="message" *ngIf="message">{{ message }}</p>
+</section>
