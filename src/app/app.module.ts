@@ -11,16 +11,18 @@ import { StatusFilterComponent } from './components/status-filter/status-filter.
 import { InboxDashboardComponent } from './features/inbox/inbox-dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, InboxDashboardComponent],
+  declarations: [],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
     AppRoutingModule,
+    AppComponent,
     FilterBarComponent,
     StatusFilterComponent,
     InboxColumnComponent,
-    DetailPanelComponent
+    DetailPanelComponent,
+    InboxDashboardComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,29 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h1 class="title">Anmelden</h1>
+
+    <form [formGroup]="form" (ngSubmit)="login()" class="form">
+      <label class="field">
+        <span>E-Mail</span>
+        <input type="email" formControlName="email" placeholder="name@example.com" />
+        <small *ngIf="form.controls.email.touched && form.controls.email.invalid" class="error">Gültige E-Mail eingeben</small>
+      </label>
+
+      <label class="field">
+        <span>Passwort</span>
+        <input type="password" formControlName="password" placeholder="••••••••" />
+        <small *ngIf="form.controls.password.touched && form.controls.password.invalid" class="error">Passwort erforderlich</small>
+      </label>
+
+      <button type="submit" class="btn primary">Login</button>
+    </form>
+
+    <button type="button" class="btn secondary" (click)="loginWithGoogle()">Mit Google anmelden</button>
+
+    <p class="footer">
+      Noch keinen Account? <a routerLink="/register">Jetzt registrieren</a>
+    </p>
+
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  </div>
+</div>
