@@ -5,5 +5,6 @@ export const environment = {
    * Set the API key used for development. When running locally against the provided backend,
    * use the `change-me` key from `application.properties` or configure `SECURITY_API_KEY`.
    */
-  apiKey: 'change-me'
+  apiKey: 'change-me',
+  apiBaseUrl: 'http://localhost:8080'
 };

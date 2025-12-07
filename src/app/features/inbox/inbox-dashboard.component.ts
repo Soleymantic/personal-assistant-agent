@@ -1,9 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
+import { DetailPanelComponent } from '../../components/detail-panel/detail-panel.component';
+import { FilterBarComponent } from '../../components/filter-bar/filter-bar.component';
+import { InboxColumnComponent } from '../../components/inbox-column/inbox-column.component';
+import { StatusFilterComponent } from '../../components/status-filter/status-filter.component';
 import { InboxStore } from '../../services/inbox.store';
 
 @Component({
   selector: 'app-inbox-dashboard',
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule, FilterBarComponent, StatusFilterComponent, InboxColumnComponent, DetailPanelComponent],
   templateUrl: './inbox-dashboard.component.html',
   styleUrls: ['./inbox-dashboard.component.css']
 })
