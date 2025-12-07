@@ -20,6 +20,13 @@ Angular-basierte Webapplikation (v20) zur Automatisierung persönlicher Bürokra
    ```
    Der Dev-Server läuft standardmäßig auf `http://localhost:4200`.
 
+3. Google-OAuth2-Backend starten:
+   ```bash
+   cp .env.example .env # mit eigenen Google-Credentials befüllen
+   npm run server
+   ```
+   Der OAuth2-Server lauscht auf `http://localhost:3000` und leitet erfolgreiche Logins nach `FRONTEND_REDIRECT_URL` mit `accessToken`/`refreshToken` als Query-Parameter weiter.
+
 > Hinweis: Das Projekt nutzt bereits den neuen Angular-Control-Flow (`@for`, `@if`) und die Angular-20-Toolchain (CLI + esbuild-Builder). Achte bei Erweiterungen darauf, die neuen Sprachkonstrukte beizubehalten.
 
 ## Architektur

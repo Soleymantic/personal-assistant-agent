@@ -1,29 +1,58 @@
 <div class="auth-wrapper">
-  <div class="auth-card">
-    <h1 class="title">Anmelden</h1>
+  <div class="auth-shell" *ngIf="theme$ | async as theme">
+    <div class="toolbar">
+      <button
+        type="button"
+        class="icon-button"
+        (click)="toggleTheme()"
+        [attr.aria-pressed]="theme === 'dark'"
+        aria-label="Darstellung umschalten"
+      >
+        <span class="icon" aria-hidden="true">
+          <span class="sun" [class.visible]="theme === 'light'">☀️</span>
+          <span class="moon" [class.visible]="theme === 'dark'">🌙</span>
+        </span>
+        <span class="icon-label">{{ theme === 'dark' ? 'Light Mode' : 'Dark Mode' }}</span>
+      </button>
+    </div>
 
-    <form [formGroup]="form" (ngSubmit)="login()" class="form">
-      <label class="field">
-        <span>E-Mail</span>
-        <input type="email" formControlName="email" placeholder="name@example.com" />
-        <small *ngIf="form.controls.email.touched && form.controls.email.invalid" class="error">Gültige E-Mail eingeben</small>
-      </label>
+    <div class="auth-card">
+      <div class="heading">
+        <p class="eyebrow">Willkommen zurück</p>
+        <h1 class="title">Anmelden</h1>
+        <p class="subtitle">Melde dich an, um deine Inbox weiter zu organisieren.</p>
+      </div>
 
-      <label class="field">
-        <span>Passwort</span>
-        <input type="password" formControlName="password" placeholder="••••••••" />
-        <small *ngIf="form.controls.password.touched && form.controls.password.invalid" class="error">Passwort erforderlich</small>
-      </label>
+      <button type="button" class="btn google" (click)="loginWithGoogle()">
+        <img src="assets/google.svg" alt="Google" width="20" height="20" loading="lazy" />
+        <span>Mit Google anmelden</span>
+      </button>
 
-      <button type="submit" class="btn primary">Login</button>
-    </form>
+      <div class="divider" role="presentation">
+        <span>oder mit E-Mail</span>
+      </div>
 
-    <button type="button" class="btn secondary" (click)="loginWithGoogle()">Mit Google anmelden</button>
+      <form [formGroup]="form" (ngSubmit)="login()" class="form">
+        <label class="field">
+          <span>E-Mail</span>
+          <input type="email" formControlName="email" placeholder="name@example.com" />
+          <small *ngIf="form.controls.email.touched && form.controls.email.invalid" class="error">Gültige E-Mail eingeben</small>
+        </label>
 
-    <p class="footer">
-      Noch keinen Account? <a routerLink="/register">Jetzt registrieren</a>
-    </p>
+        <label class="field">
+          <span>Passwort</span>
+          <input type="password" formControlName="password" placeholder="••••••••" />
+          <small *ngIf="form.controls.password.touched && form.controls.password.invalid" class="error">Passwort erforderlich</small>
+        </label>
 
-    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+        <button type="submit" class="btn primary">Login</button>
+      </form>
+
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+      <p class="footer">
+        Noch keinen Account? <a routerLink="/register">Jetzt registrieren</a>
+      </p>
+    </div>
   </div>
 </div>
