@@ -68,6 +68,22 @@ export class AuthService {
     return typeof localStorage !== 'undefined' ? localStorage.getItem('refreshToken') : null;
   }
 
+  ensureDebugUser(): void {
+    if (!environment.authBypass || this.currentUserSubject.value) {
+      return;
+    }
+
+    const debugUser: User = {
+      id: 'debug',
+      email: 'debug@example.com',
+      firstName: 'Debug',
+      lastName: 'User',
+      roles: ['debug']
+    };
+
+    this.currentUserSubject.next(debugUser);
+  }
+
   setTokens(accessToken: string, refreshToken: string): void {
     if (typeof localStorage === 'undefined') {
       return;

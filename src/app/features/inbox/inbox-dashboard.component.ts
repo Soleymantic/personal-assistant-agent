@@ -27,16 +27,6 @@ export class InboxDashboardComponent {
     console.info(message);
   }
 
-  toggleTheme(): void {
-    const next = this.theme() === 'dark' ? 'light' : 'dark';
-    this.setTheme(next);
-  }
-
-  private setTheme(theme: 'light' | 'dark'): void {
-    this.theme.set(theme);
-    this.applyTheme(theme);
-  }
-
   private applyTheme(theme: 'light' | 'dark'): void {
     if (typeof document !== 'undefined') {
       document.documentElement.setAttribute('data-theme', theme);

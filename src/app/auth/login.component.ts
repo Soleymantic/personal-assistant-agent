@@ -24,6 +24,8 @@ export class LoginComponent {
     password: ['', [Validators.required]]
   });
 
+  readonly canBypassAuth = environment.authBypass === true;
+
   errorMessage = '';
 
   login(): void {
@@ -43,5 +45,14 @@ export class LoginComponent {
 
   loginWithGoogle(): void {
     window.location.href = `${environment.apiBaseUrl}/oauth2/authorization/google`;
+  }
+
+  bypassLogin(): void {
+    if (!this.canBypassAuth) {
+      return;
+    }
+
+    this.auth.ensureDebugUser();
+    this.router.navigate(['/']);
   }
 }

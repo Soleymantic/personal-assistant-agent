@@ -6,5 +6,6 @@ export const environment = {
    * use the `change-me` key from `application.properties` or configure `SECURITY_API_KEY`.
    */
   apiKey: 'change-me',
-  apiBaseUrl: 'http://localhost:8080'
+  apiBaseUrl: 'http://localhost:8080',
+  authBypass: false
 };

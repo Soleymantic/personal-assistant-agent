@@ -57,6 +57,14 @@
                   "with": "src/environments/environment.development.ts"
                 }
               ]
+            },
+            "debug-bypass": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.debug.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "development"
@@ -72,6 +80,9 @@
             },
             "development": {
               "buildTarget": "bureaucracy-assistant:build:development"
+            },
+            "debug-bypass": {
+              "buildTarget": "bureaucracy-assistant:build:debug-bypass"
             }
           }
         }

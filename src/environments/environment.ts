@@ -6,5 +6,6 @@ export const environment = {
    * This value is intentionally empty to avoid leaking secrets in source control.
    */
   apiKey: '',
-  apiBaseUrl: 'https://api.example.com'
+  apiBaseUrl: 'https://api.example.com',
+  authBypass: false
 };

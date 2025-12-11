@@ -34,6 +34,10 @@
 
       <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
 
+      <button *ngIf="canBypassAuth" type="button" class="btn debug-bypass" (click)="bypassLogin()">
+        Debug: Direkt zur App
+      </button>
+
       <p class="footer">
         Noch keinen Account? <a routerLink="/register">Jetzt registrieren</a>
       </p>
