@@ -6,7 +6,6 @@ import { InboxColumnComponent } from '../../components/inbox-column/inbox-column
 import { StatusFilterComponent } from '../../components/status-filter/status-filter.component';
 import { InboxStore } from '../../services/inbox.store';
 import { AuthService } from '../../auth/auth.service';
-import { AsyncPipe, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-inbox-dashboard',
@@ -16,9 +15,7 @@ import { AsyncPipe, NgIf } from '@angular/common';
     FilterBarComponent,
     StatusFilterComponent,
     InboxColumnComponent,
-    DetailPanelComponent,
-    NgIf,
-    AsyncPipe
+    DetailPanelComponent
   ],
   templateUrl: './inbox-dashboard.component.html',
   styleUrls: ['./inbox-dashboard.component.css']

@@ -1,18 +1,5 @@
 <div class="page">
   <header class="app-header">
-    <div class="brand-row">
-      <div class="brand" role="img" aria-label="Bürokratie-Assistent">
-        <span class="brand-icon material-symbols-rounded" aria-hidden="true">inbox</span>
-        <span class="sr-only">Bürokratie-Assistent</span>
-      </div>
-      <div class="session" *ngIf="user$ | async as user">
-        <div class="user-chip" aria-label="Angemeldeter Benutzer">
-          <span class="user-icon material-symbols-rounded" aria-hidden="true">account_circle</span>
-          <span class="user-name">{{ user.firstName }} {{ user.lastName }}</span>
-        </div>
-        <button type="button" class="logout-button" (click)="logout()">Abmelden</button>
-      </div>
-    </div>
     <app-filter-bar
       [searchTerm]="inbox.searchTerm()"
       [selectedTags]="inbox.selectedTags()"

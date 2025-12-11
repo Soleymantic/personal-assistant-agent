@@ -6,7 +6,8 @@ type Theme = 'light' | 'dark';
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
-  private readonly storageKey = 'preferred-theme';
+  private readonly storageKey = 'theme';
+  private readonly legacyStorageKey = 'preferred-theme';
   private readonly theme = new BehaviorSubject<Theme>(this.getInitialTheme());
 
   constructor(@Inject(DOCUMENT) private readonly document: Document) {
@@ -24,7 +25,7 @@ export class ThemeService {
 
   private setTheme(theme: Theme): void {
     this.theme.next(theme);
-    localStorage.setItem(this.storageKey, theme);
+    this.persistTheme(theme);
     this.applyTheme(theme);
   }
 
@@ -33,12 +34,34 @@ export class ThemeService {
   }
 
   private getInitialTheme(): Theme {
-    const stored = localStorage.getItem(this.storageKey) as Theme | null;
+    const stored = this.readStoredTheme();
+    if (stored) return stored;
+
+    const prefersDark =
+      this.document.defaultView?.matchMedia &&
+      this.document.defaultView.matchMedia('(prefers-color-scheme: dark)').matches;
+    return prefersDark ? 'dark' : 'light';
+  }
+
+  private readStoredTheme(): Theme | null {
+    if (typeof localStorage === 'undefined') {
+      return null;
+    }
+
+    const stored = localStorage.getItem(this.storageKey) ?? localStorage.getItem(this.legacyStorageKey);
     if (stored === 'light' || stored === 'dark') {
       return stored;
     }
 
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return prefersDark ? 'dark' : 'light';
+    return null;
+  }
+
+  private persistTheme(theme: Theme): void {
+    if (typeof localStorage === 'undefined') {
+      return;
+    }
+
+    localStorage.setItem(this.storageKey, theme);
+    localStorage.removeItem(this.legacyStorageKey);
   }
 }

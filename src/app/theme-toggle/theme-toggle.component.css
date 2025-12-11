@@ -5,7 +5,7 @@
 
 .theme-toggle.inline {
   justify-content: flex-end;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0;
 }
 
 .theme-toggle.floating {
