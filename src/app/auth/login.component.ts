@@ -4,7 +4,6 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
-import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'app-login',
@@ -19,9 +18,6 @@ export class LoginComponent {
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
-  private readonly themeService = inject(ThemeService);
-
-  readonly theme$ = this.themeService.themeChanges;
 
   readonly form = this.fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email]],
@@ -47,9 +43,5 @@ export class LoginComponent {
 
   loginWithGoogle(): void {
     window.location.href = `${environment.apiBaseUrl}/oauth2/authorization/google`;
-  }
-
-  toggleTheme(): void {
-    this.themeService.toggleTheme();
   }
 }

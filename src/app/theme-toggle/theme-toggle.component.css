@@ -1,0 +1,66 @@
+.theme-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle.inline {
+  justify-content: flex-end;
+  margin-bottom: 0.75rem;
+}
+
+.theme-toggle.floating {
+  position: fixed;
+  top: clamp(0.75rem, 2vw, 1.5rem);
+  right: clamp(0.75rem, 2vw, 1.5rem);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.theme-toggle.floating .icon-button {
+  pointer-events: auto;
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-1);
+  background: var(--surface-2);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-weight: 600;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  box-shadow: 0 8px 30px color-mix(in srgb, var(--shadow-accent) 80%, transparent);
+}
+
+.icon-button:hover {
+  border-color: var(--border-2);
+  box-shadow: 0 10px 34px color-mix(in srgb, var(--shadow-accent) 90%, transparent);
+}
+
+.icon-button:active {
+  transform: translateY(1px);
+}
+
+.icon {
+  display: inline-flex;
+  position: relative;
+  width: 1.5rem;
+  justify-content: center;
+}
+
+.sun,
+.moon {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.icon-label {
+  font-size: 0.95rem;
+}

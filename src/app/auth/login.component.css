@@ -73,6 +73,32 @@
   gap: 1.25rem;
   border: 1px solid var(--border-1);
   color: var(--text-primary);
+  position: relative;
+  isolation: isolate;
+  transition: box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.auth-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--accent-primary) 30%, transparent), transparent 40%),
+    radial-gradient(circle at 80% 10%, color-mix(in srgb, var(--accent-primary-strong) 22%, transparent), transparent 38%);
+  opacity: 0;
+  filter: blur(18px);
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.auth-card:hover {
+  box-shadow: 0 28px 80px color-mix(in srgb, var(--shadow-accent) 95%, rgba(0, 0, 0, 0.45));
+  transform: translateY(-2px);
+}
+
+.auth-card:hover::before {
+  opacity: 1;
 }
 
 .heading {

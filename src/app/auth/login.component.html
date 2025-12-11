@@ -1,21 +1,5 @@
 <div class="auth-wrapper">
-  <div class="auth-shell" *ngIf="theme$ | async as theme">
-    <div class="toolbar">
-      <button
-        type="button"
-        class="icon-button"
-        (click)="toggleTheme()"
-        [attr.aria-pressed]="theme === 'dark'"
-        aria-label="Darstellung umschalten"
-      >
-        <span class="icon" aria-hidden="true">
-          <span class="sun" [class.visible]="theme === 'light'">☀️</span>
-          <span class="moon" [class.visible]="theme === 'dark'">🌙</span>
-        </span>
-        <span class="icon-label">{{ theme === 'dark' ? 'Light Mode' : 'Dark Mode' }}</span>
-      </button>
-    </div>
-
+  <div class="auth-shell">
     <div class="auth-card">
       <div class="heading">
         <p class="eyebrow">Willkommen zurück</p>

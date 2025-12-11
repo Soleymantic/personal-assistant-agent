@@ -1,0 +1,15 @@
+<div class="theme-toggle" [ngClass]="variant" *ngIf="theme$ | async as theme">
+  <button
+    type="button"
+    class="icon-button"
+    (click)="toggleTheme()"
+    [attr.aria-pressed]="theme === 'dark'"
+    aria-label="Darstellung umschalten"
+  >
+    <span class="icon" aria-hidden="true">
+      <span class="sun" [class.visible]="theme === 'light'">☀️</span>
+      <span class="moon" [class.visible]="theme === 'dark'">🌙</span>
+    </span>
+    <span class="icon-label">{{ theme === 'dark' ? 'Light Mode' : 'Dark Mode' }}</span>
+  </button>
+</div>

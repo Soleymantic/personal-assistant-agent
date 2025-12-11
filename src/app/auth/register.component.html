@@ -1,50 +1,52 @@
 <div class="auth-wrapper">
-  <div class="auth-card">
-    <h1 class="title">Registrieren</h1>
+  <div class="auth-shell">
+    <div class="auth-card">
+      <h1 class="title">Registrieren</h1>
 
-    <form [formGroup]="form" (ngSubmit)="register()" class="form">
-      <div class="grid">
+      <form [formGroup]="form" (ngSubmit)="register()" class="form">
+        <div class="grid">
+          <label class="field">
+            <span>Vorname</span>
+            <input type="text" formControlName="firstName" placeholder="Max" />
+            <small *ngIf="form.controls.firstName.touched && form.controls.firstName.invalid" class="error">Pflichtfeld</small>
+          </label>
+
+          <label class="field">
+            <span>Nachname</span>
+            <input type="text" formControlName="lastName" placeholder="Mustermann" />
+            <small *ngIf="form.controls.lastName.touched && form.controls.lastName.invalid" class="error">Pflichtfeld</small>
+          </label>
+        </div>
+
         <label class="field">
-          <span>Vorname</span>
-          <input type="text" formControlName="firstName" placeholder="Max" />
-          <small *ngIf="form.controls.firstName.touched && form.controls.firstName.invalid" class="error">Pflichtfeld</small>
+          <span>E-Mail</span>
+          <input type="email" formControlName="email" placeholder="name@example.com" />
+          <small *ngIf="form.controls.email.touched && form.controls.email.invalid" class="error">Gültige E-Mail eingeben</small>
         </label>
 
         <label class="field">
-          <span>Nachname</span>
-          <input type="text" formControlName="lastName" placeholder="Mustermann" />
-          <small *ngIf="form.controls.lastName.touched && form.controls.lastName.invalid" class="error">Pflichtfeld</small>
+          <span>Passwort</span>
+          <input type="password" formControlName="password" placeholder="••••••••" />
+          <small *ngIf="form.controls.password.touched && form.controls.password.invalid" class="error">Mindestens 8 Zeichen</small>
         </label>
-      </div>
 
-      <label class="field">
-        <span>E-Mail</span>
-        <input type="email" formControlName="email" placeholder="name@example.com" />
-        <small *ngIf="form.controls.email.touched && form.controls.email.invalid" class="error">Gültige E-Mail eingeben</small>
-      </label>
+        <label class="field">
+          <span>Passwort wiederholen</span>
+          <input type="password" formControlName="passwordRepeat" placeholder="••••••••" />
+          <small *ngIf="form.controls.passwordRepeat.touched && form.controls.passwordRepeat.invalid" class="error">Pflichtfeld</small>
+          <small *ngIf="form.value.password && form.value.passwordRepeat && form.value.password !== form.value.passwordRepeat" class="error">
+            Passwörter stimmen nicht überein.
+          </small>
+        </label>
 
-      <label class="field">
-        <span>Passwort</span>
-        <input type="password" formControlName="password" placeholder="••••••••" />
-        <small *ngIf="form.controls.password.touched && form.controls.password.invalid" class="error">Mindestens 8 Zeichen</small>
-      </label>
+        <button type="submit" class="btn primary">Registrieren</button>
+      </form>
 
-      <label class="field">
-        <span>Passwort wiederholen</span>
-        <input type="password" formControlName="passwordRepeat" placeholder="••••••••" />
-        <small *ngIf="form.controls.passwordRepeat.touched && form.controls.passwordRepeat.invalid" class="error">Pflichtfeld</small>
-        <small *ngIf="form.value.password && form.value.passwordRepeat && form.value.password !== form.value.passwordRepeat" class="error">
-          Passwörter stimmen nicht überein.
-        </small>
-      </label>
+      <p class="footer">
+        Bereits registriert? <a routerLink="/login">Zum Login</a>
+      </p>
 
-      <button type="submit" class="btn primary">Registrieren</button>
-    </form>
-
-    <p class="footer">
-      Bereits registriert? <a routerLink="/login">Zum Login</a>
-    </p>
-
-    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    </div>
   </div>
 </div>
