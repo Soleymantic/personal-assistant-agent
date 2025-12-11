@@ -1,0 +1,72 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border-1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.brand-icon {
+  font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+  font-size: 26px;
+  color: var(--accent-primary);
+}
+
+.brand-text {
+  letter-spacing: 0.01em;
+}
+
+.controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.session {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-1);
+  border-radius: 12px;
+  padding: 8px 12px;
+}
+
+.user-icon {
+  font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+  font-size: 22px;
+  color: var(--accent-primary);
+}
+
+.user-name {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.logout-button {
+  border: 1px solid var(--border-2);
+  background: var(--surface-2);
+  color: var(--text-primary);
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logout-button:hover {
+  border-color: var(--border-strong);
+  color: var(--accent-primary-strong);
+}
