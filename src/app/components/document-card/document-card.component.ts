@@ -16,6 +16,11 @@ export class DocumentCardComponent {
 
   @Output() select = new EventEmitter<BureauDocument>();
 
+  onSelect(event: MouseEvent): void {
+    event.stopPropagation();
+    this.select.emit(this.document);
+  }
+
   formatDue(due?: string | null): string {
     if (!due) {
       return 'Keine Fälligkeit';

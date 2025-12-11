@@ -1,5 +1,5 @@
 @if (document) {
-  <aside class="details">
+  <aside class="details" (click)="$event.stopPropagation()">
     <div class="details-header">
       <div>
         <p class="badge neutral">{{ document.category || 'Allgemein' }}</p>

@@ -1,4 +1,4 @@
-<article class="card" (click)="select.emit(document)" [class.selected]="selected">
+<article class="card" (click)="onSelect($event)" [class.selected]="selected">
   <div class="card-top">
     <span class="badge" [class.warning]="accent === 'warning'" [class.danger]="accent === 'danger'" [class.success]="accent === 'success'">
       {{ formatDue(document.due) }}

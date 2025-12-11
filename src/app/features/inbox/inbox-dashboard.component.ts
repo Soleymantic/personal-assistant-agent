@@ -25,6 +25,10 @@ export class InboxDashboardComponent {
   readonly inbox = inject(InboxStore);
   readonly user$ = this.auth.currentUser$;
 
+  clearSelection(): void {
+    this.inbox.selectedItem.set(null);
+  }
+
   applyAction(action: 'pay' | 'reply'): void {
     const current = this.inbox.selectedItem();
     const fallback = action === 'pay' ? 'Zahlung vorgemerkt' : 'Aktion ausgeführt';
