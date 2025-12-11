@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
-import { ThemeService } from '../theme.service';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-theme-toggle',
